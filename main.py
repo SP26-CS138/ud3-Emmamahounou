@@ -11,6 +11,11 @@ A program that helps students track assignments for different classes.
 This program allows the user to add assignments, view saved assignments,
 mark assignments as done, and save assignment data to a file so the data
 can still be used the next time the program runs.
+I used a dictionary for assignments because each assignment name can connect to a class name.
+This makes it easy to save and find each assignment.
+
+I used a list for completed assignments because it can store all assignment names that are done.
+This makes it easy to check if an assignment is finished.
 
 """
 
@@ -25,11 +30,16 @@ can still be used the next time the program runs.
 # FUNCTIONS:
 ##########################################
 def load_assignments():
+    """
+    Loads saved assignments from the text file.
+    Returns the assignments dictionary and completed list.
+    """
     assignments = {}
     completed = []
 
     try:
         file = open("assignments.txt", "r")
+
         for line in file:
             line = line.strip()
             parts = line.split(",")
@@ -54,6 +64,10 @@ def load_assignments():
 
 
 def save_assignments(assignments, completed):
+    """
+    Saves all assignments to the text file.
+    It also saves if each assignment is done or not done.
+    """
     file = open("assignments.txt", "w")
 
     for name in assignments:
@@ -70,6 +84,10 @@ def save_assignments(assignments, completed):
 
 
 def add_assignment(assignments):
+    """
+    Asks the user to enter an assignment name and class name.
+    Adds the assignment to the assignments dictionary.
+    """
     name = input("Enter assignment name: ")
     course = input("Enter class name: ")
 
@@ -78,6 +96,10 @@ def add_assignment(assignments):
 
 
 def view_assignments(assignments, completed):
+    """
+    Shows all saved assignments.
+    It also shows if each assignment is done or not done.
+    """
     if len(assignments) == 0:
         print("No assignments saved.")
     else:
@@ -94,6 +116,10 @@ def view_assignments(assignments, completed):
 
 
 def mark_done(assignments, completed):
+    """
+    Asks the user which assignment is done.
+    Adds the assignment name to the completed list.
+    """
     name = input("Enter the assignment name to mark as done: ")
 
     if name in assignments:
@@ -105,6 +131,10 @@ def mark_done(assignments, completed):
 
 
 def menu(assignments, completed):
+    """
+    Shows the menu options to the user.
+    Runs the user's choice until they choose to exit.
+    """
     print("\nCampus Assignment Tracker")
     print("1. Add assignment")
     print("2. View assignments")
